@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  mariadb:
+    image: mariadb:10.3.9
+    container_name: mysql-query-builder-mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3306:3306'
+    restart: 'on-failure'
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?err}
+      MYSQL_USER: ${MYSQL_USER:?err}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?err}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
+    volumes:
+      - ${PWD}
+    networks:
+      - babylon
+
+networks:
+  babylon:
