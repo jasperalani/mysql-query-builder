@@ -252,11 +252,7 @@ class DatabaseConnection {
     }
 }
 
-const Database = new DatabaseConnection('127.0.0.1', 'root', 'password', 'mysql-query-builder').connection();
-const Update = new Query(Database).update('testcase', 'noodlepoodle', 'id = 7', 'test-queries');
-
-console.log(Update)
-
+// const Database = new DatabaseConnection('127.0.0.1', 'root', 'password', 'mysql-query-builder').connection();
+// const Update = new Query(Database).update('testcase', 'noodlepoodle', 'id = 7', 'test-queries');
 //
-// console.log(Update.OkPacket.a)
-
+// console.log(Update)

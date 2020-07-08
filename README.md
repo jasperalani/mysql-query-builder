@@ -1,5 +1,5 @@
 ## NodeJS MySQL Query Builder
-### By Jasper Alani
+##### By Jasper Alani
 
 - Functions
     - select
@@ -7,4 +7,4 @@
     - update
     - delete
     
-Contains docker wrapper for mariadb database.
+Project also contains docker for a mariadb database.
