@@ -1,5 +1,5 @@
 {
-  "name": "mysql-query-builder",
+  "name": "@jasperalani/mysql-query-builder",
   "version": "1.0.0",
   "description": "MySQL Query Builder",
   "main": "query-builder.js",
