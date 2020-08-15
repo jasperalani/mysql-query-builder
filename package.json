@@ -1,15 +1,24 @@
 {
   "name": "mysql-query-builder",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "MySQL Query Builder",
+  "main": "query-builder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mysql": "^2.18.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasperalani/mysql-query-builder.git"
+  },
+  "keywords": [
+    "MySQL",
+    "Query",
+    "Builder"
+  ],
+  "author": "Jasper Alani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasperalani/mysql-query-builder/issues"
+  },
+  "homepage": "https://github.com/jasperalani/mysql-query-builder#readme"
 }

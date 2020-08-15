@@ -1,30 +1,12 @@
-/*
-SELECT column1, column2, ...
-FROM table_name;
- */
-
-/*
-INSERT INTO table_name (column1, column2, column3, ...)
-VALUES (value1, value2, value3, ...);
- */
-
-/*
-UPDATE table_name
-SET column1 = value1, column2 = value2, ...
-WHERE condition;
- */
-
-/*
-DELETE FROM table_name WHERE condition;
- */
-
-const mysql = require('mysql');
-
-class Query {
-    constructor(db) {
-        this.db = db;
-    }
-
+module.exports = {
+    /**
+     * Select columns from a table.
+     *
+     * @param {string|array} columns
+     * @param {string} table
+     *
+     * @return {string} MySQL Query
+     */
     select(columns, table) {
         if(!columns || !table){
             return false;
@@ -38,25 +20,30 @@ class Query {
 
         let column_counter = 1,
             column_max_count = columns.length;
+
         for(const column of columns){
             const delimiter = query + column;
-            query = column_counter !== column_max_count ? delimiter + ", " : delimiter + " ";
+            query = column_counter !== column_max_count
+                ? delimiter + ", "
+                : delimiter + " ";
             column_counter++;
         }
 
         query = query + "FROM `" + table + "`;";
 
-        let result_array = [];
+        return query;
+    },
 
-        this.db.query(query, function (err, result) {
-            if (err) throw err;
-            result_array = result;
-        });
-
-        return result_array;
-    }
-
-    async insert(columns, values, table) {
+    /**
+     * Insert values into columns in table.
+     *
+     * @param {string|array} columns
+     * @param {string|array} values
+     * @param {string} table
+     *
+     * @return {string} MySQL Query
+     */
+    insert(columns, values, table) {
         if(!columns || !values || !table){
             return false;
         }
@@ -107,16 +94,8 @@ class Query {
             value_counter++;
         }
 
-        await this.db.query(query, function (err, result) {
-            if (err) throw err;
-            if(result){
-                console.log(true)
-            }else{
-                console.log(false)
-            }
-            process.exit();
-        });
-    }
+        return query;
+    },
 
     /**
      * Update columns in a table with values based on a condition.
@@ -126,11 +105,9 @@ class Query {
      * @param {string} condition
      * @param {string} table
      *
-     * @return object
-     * {status: boolean, message: string}
+     * @return {string} MySQL Query
      */
-    update(columns, values, condition, table)
-    {
+    update(columns, values, condition, table) {
         if(!columns || !values || !condition || !table){
             return false;
         }
@@ -168,91 +145,29 @@ class Query {
             value_counter++;
         }
 
-        if(condition !== null){
+        if(condition.length > 0){
             query = query + " WHERE " + condition + ";";
         }else{
             query = query + ";";
         }
 
-        let query_result;
 
-        this.db.query(query, function (err, result) {
-            if (err) throw err;
-            query_result = result;
-        });
+        return query;
+    },
 
-        if(query_result !== undefined){
-            if(query_result.OkPacket.affectedRows === 0){
-                return {
-                    status: false,
-                    message: 'Condition matched no rows'
-                };
-            }
-
-            /** @param OkPacket.changedRows */
-            if(query_result.OkPacket.changedRows === 0){
-                return {
-                    status: false,
-                    message: 'Condition matched rows but value was not changed'
-                };
-            }else{
-                return {
-                    status: true,
-                    message: 'Rows updated'
-                };
-            }
-        }else{
-            return {
-                status: false,
-                message: 'Failed to query database'
-            }
-        }
-
-    }
-
+    /**
+     * Delete based on a condition.
+     *
+     * @param {string} condition
+     * @param {string} table
+     *
+     * @return {string} MySQL Query
+     */
     delete(condition, table) {
         if(!condition || !table){
             return false;
         }
 
-        let query = `DELETE FROM \`${table}\` WHERE ` + condition;
-
-        this.db.query(query, function (err, result) {
-            if (err) throw err;
-            if(result){
-                console.log(true)
-            }else{
-                console.log(false)
-            }
-        });
-
-    }
-
+        return `DELETE FROM \`${table}\` WHERE ` + condition;
+    },
 }
-
-class DatabaseConnection {
-    constructor(host, user, password, database) {
-        this.host = host;
-        this.user = user;
-        this.password = password;
-        this.database = database;
-    }
-
-    connection() {
-        const conn = mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            database: this.database
-        });
-        conn.connect(function(err) {
-            if (err) throw err;
-        });
-        return conn;
-    }
-}
-
-// const Database = new DatabaseConnection('127.0.0.1', 'root', 'password', 'mysql-query-builder').connection();
-// const Update = new Query(Database).update('testcase', 'noodlepoodle', 'id = 7', 'test-queries');
-//
-// console.log(Update)

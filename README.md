@@ -1,10 +1,16 @@
-## NodeJS MySQL Query Builder
+## MySQL Query Builder
 ##### By Jasper Alani
 
-- Functions
-    - select
-    - insert
-    - update
-    - delete
-    
-Project also contains docker for a mariadb database.
+Languages supported:
+- Javascript
+
+To be supported:
+- Typescript
+- PHP
+- Go
+
+Current functions:
+`select`
+`insert`
+`update`
+`delete`
