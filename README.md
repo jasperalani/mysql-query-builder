@@ -1,5 +1,4 @@
 ## MySQL Query Builder
-##### By Jasper Alani
 
 Languages supported:
 - Javascript
