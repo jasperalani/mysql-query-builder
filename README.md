@@ -14,6 +14,8 @@ Current functions:
 `update`
 `delete`
 
+Functions return valid SQL.
+
 ### Usage
 
 #### Javascript:
