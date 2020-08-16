@@ -1,13 +1,14 @@
 module.exports = {
     /**
-     * Select columns from a table.
+     * Select columns from a table based on an optional condition.
      *
      * @param {string|array} columns
      * @param {string} table
+     * @param {null|string} condition
      *
-     * @return {string} MySQL Query
+     * @return {boolean|string} MySQL Query
      */
-    select(columns, table) {
+    select(columns, table, condition = null) {
         if(!columns || !table){
             return false;
         }
@@ -29,7 +30,13 @@ module.exports = {
             column_counter++;
         }
 
-        query = query + "FROM `" + table + "`;";
+        query = query + "FROM `" + table + "` ";
+
+        if(condition.length > 0) {
+            query = query + "WHERE " + condition;
+        }
+
+        query = query + ";";
 
         return query;
     },
@@ -41,7 +48,7 @@ module.exports = {
      * @param {string|array} values
      * @param {string} table
      *
-     * @return {string} MySQL Query
+     * @return {boolean|string} MySQL Query
      */
     insert(columns, values, table) {
         if(!columns || !values || !table){
@@ -54,6 +61,10 @@ module.exports = {
 
         if(typeof values === 'string'){
             values = [values];
+        }
+
+        if(columns.length !== values.length){
+            return false;
         }
 
         let query = `INSERT INTO \`${table}\` `;
@@ -78,10 +89,10 @@ module.exports = {
         let value_counter = 1,
             value_max_count = columns.length;
         for(let value of values){
-            const delimiter = query + value;
             if(value !== null){
                 value = "'" + value + "'";
             }
+            const delimiter = query + value;
             if(value_counter === 1 && value_counter === value_max_count){
                 query = query + "VALUES (" + value + ")";
             }else if(value_counter === 1){
@@ -105,7 +116,7 @@ module.exports = {
      * @param {string} condition
      * @param {string} table
      *
-     * @return {string} MySQL Query
+     * @return {boolean|string} MySQL Query
      */
     update(columns, values, condition, table) {
         if(!columns || !values || !condition || !table){
@@ -161,7 +172,7 @@ module.exports = {
      * @param {string} condition
      * @param {string} table
      *
-     * @return {string} MySQL Query
+     * @return {boolean|string} MySQL Query
      */
     delete(condition, table) {
         if(!condition || !table){
