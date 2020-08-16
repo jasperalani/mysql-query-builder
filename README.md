@@ -1,5 +1,7 @@
 ## MySQL Query Builder
 
+TODO: Add usage to readme
+
 Languages supported:
 - Javascript
 
