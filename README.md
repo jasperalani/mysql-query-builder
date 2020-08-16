@@ -2,9 +2,9 @@
 
 Languages supported:
 - Javascript
+- Typescript
 
 To be supported:
-- Typescript
 - PHP
 - Go
 
@@ -17,7 +17,8 @@ Current functions:
 ### Usage
 
 #### Javascript:
-<code>
+
+```javascript
 queryBuilder.select(['id', 'name'], 'my_table', 'id = 6');
 
 queryBuilder.insert(['name', 'deleted'], ['Jasper', false], 'my_table');
@@ -25,10 +26,10 @@ queryBuilder.insert(['name', 'deleted'], ['Jasper', false], 'my_table');
 queryBuilder.update(['name', 'deleted'], ['Yasper', true], 'id = 6', 'my_table');
 
 queryBuilder.delete('id = 6', 'my_table');
-</code>
+```
 
 #### Typescript:
-<code>
+```typescript
 const columns: Columns = {
     columns: [
         {value: 'id'},
@@ -52,4 +53,4 @@ queryBuilder.select(columns, 'my_table', 'id = 6');
 queryBuilder.update(columns, values, 'id = 6', 'my_table');
 
 queryBuilder.delete('id = 6', 'my_table');
-</code>
+```
