@@ -1,24 +1,29 @@
 ## MySQL Query Builder
 
-Languages supported:
+Functions that values and return SQL ready to be queried.
+
+### Languages
 - Javascript
 - Typescript
-
-To be supported:
-- PHP
 - Go
 
-Current functions:
+In the future:
+- PHP
+
+### Functions
 `select`
 `insert`
 `update`
 `delete`
 
-Functions return valid SQL.
+### Todo
+
+- Create test files
+- Improve typescript syntax
 
 ### Usage
 
-#### Javascript:
+Javascript:
 
 ```javascript
 queryBuilder.select(['id', 'name'], 'my_table', 'id = 6');
@@ -30,7 +35,7 @@ queryBuilder.update(['name', 'deleted'], ['Yasper', true], 'id = 6', 'my_table')
 queryBuilder.delete('id = 6', 'my_table');
 ```
 
-#### Typescript:
+Typescript:
 ```typescript
 const columns: Columns = {
     columns: [
