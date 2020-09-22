@@ -1,3 +1,4 @@
 # Project made using Phpstorm
 /.idea/
 /node_modules/
+/go/main/main
