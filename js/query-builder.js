@@ -32,7 +32,7 @@ module.exports = {
 
         query = query + "FROM `" + table + "` ";
 
-        if(condition.length > 0) {
+        if(condition !== null && condition.length > 0) {
             query = query + "WHERE " + condition;
         }
 
