@@ -1,6 +1,6 @@
 ## MySQL Query Builder
 
-Functions that values and return SQL ready to be queried.
+Functions that take values and return SQL ready to be queried.
 
 ### Languages
 - Javascript
