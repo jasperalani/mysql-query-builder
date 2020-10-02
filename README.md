@@ -5,16 +5,19 @@ Functions that values and return SQL ready to be queried.
 ### Languages
 - Javascript
 - Typescript
-- Go
+- Go - In progress
+- PHP - In  progress
 
 In the future:
-- PHP
+- Python
 
 ### Functions
 `select`
 `insert`
 `update`
 `delete`
+
+`condition.where`
 
 ### Todo
 
@@ -26,13 +29,29 @@ In the future:
 Javascript:
 
 ```javascript
+let query = ''
+
 queryBuilder.select(['id', 'name'], 'my_table', 'id = 6');
+queryBuilder.select(['id', 'name'], 'my_table', condition.where('id', '6', '='));
+// SELECT id, name FROM `my_table` WHERE id = 6;
 
 queryBuilder.insert(['name', 'deleted'], ['Jasper', false], 'my_table');
+// INSERT INTO `my_table` (name, deleted) VALUES ('Jasper', 'false');
 
 queryBuilder.update(['name', 'deleted'], ['Yasper', true], 'id = 6', 'my_table');
+// UPDATE `my_table` SET name = 'Yasper', deleted = 'true' WHERE id = 6;
 
 queryBuilder.delete('id = 6', 'my_table');
+// DELETE FROM `my_table` WHERE id = 6;
+
+queryBuilder.select(
+  '*',
+  'table',
+  // condtion funtion
+  condition.where(['id', 'code'], ['5', 'xxyyzz'], '=')
+)
+// SELECT * FROM `table` WHERE id = 5 AND code = 'xxyyzz';
+
 ```
 
 Typescript:
