@@ -1,6 +1,6 @@
 ## MySQL Query Builder
 
-Functions that values and return SQL ready to be queried.
+Functions that take values and return SQL ready to be queried.
 
 ### Languages
 - Javascript
@@ -21,8 +21,11 @@ In the future:
 
 ### Todo
 
+- Not all Go functions are working
+- Not all PHP functions have been created
 - Create test files
-- Improve typescript syntax
+- Improve typescript variable structure
+- Think about more languages to implement in
 
 ### Usage
 
