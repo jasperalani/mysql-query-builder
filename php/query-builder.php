@@ -124,7 +124,6 @@ class QueryBuilder {
 
 		$query .= "" !== $condition ? " WHERE $condition;" : ";";
 
-		// Todo: check this works
 		return $query;
 	}
 
