@@ -80,3 +80,13 @@ queryBuilder.update(columns, values, 'id = 6', 'my_table');
 
 queryBuilder.delete('id = 6', 'my_table');
 ```
+
+PHP: 
+```php
+$builder = new QueryBuilder();
+
+$select = $builder->select( [ 'column1', 'column2' ], 'table1', 'x = 6' );
+$insert = $builder->insert( [ 'column1' ], ['value1'], 'table1' );
+$update = $builder->update( [ 'column1', 'column2' ], ['value1', 'value2'], 'table1', 'x = 6' );
+$delete = $builder->delete( 'table1', 'x = 6' );
+```
