@@ -21,6 +21,7 @@ In the future:
 
 ### Todo
 
+- Make the functions more intuitive and simple (especially typescript)
 - Not all Go functions are working
 - Not all PHP functions have been created
 - Create test files
