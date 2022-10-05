@@ -2,7 +2,7 @@
   "name": "@jasperalani/mysql-query-builder",
   "version": "1.0.0",
   "description": "MySQL Query Builder",
-  "main": "query-builder.js",
+  "main": "js/query-builder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
